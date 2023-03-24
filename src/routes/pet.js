@@ -1,12 +1,11 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
-const petController = require('../app/controllers/petController')
+const petController = require('../app/controllers/petController');
 
-petController.index
+petController.index;
 
-router.use('/:slug', petController.show)
-router.use('/', petController.index)
+router.get('/:slug', petController.show);
+router.get('/', petController.index);
 
-
-module.exports = router
+module.exports = router;
