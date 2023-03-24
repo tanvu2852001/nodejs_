@@ -16,8 +16,6 @@ app.set('view engine','hbs')
 app.set('views', path.join(__dirname, 'resources/views'));
 console.log(path.join(__dirname, 'resources/views'))
 
-//HTTP Logger
-
 app.get('/', (req, res) => {
     res.render('home')
 })
