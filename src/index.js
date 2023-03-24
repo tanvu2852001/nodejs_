@@ -2,7 +2,11 @@ const path = require('path')
 const express = require('express')
 const app = express()
 const handlebars = require('express-handlebars')
+const { dirname } = require('path')
 const port = 3000
+
+//Process static file
+app.use(express.static(path.join(__dirname,'public')))
 
 //Templete engine
 app.engine('hbs', handlebars.engine({

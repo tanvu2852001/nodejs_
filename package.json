@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon src/index.js",
+    "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,7 +24,8 @@
   "homepage": "https://github.com/tanvu2852001/nodejs_#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "express-handlebars": "^7.0.4"
+    "express-handlebars": "^7.0.4",
+    "node-sass": "^8.0.0"
   },
   "devDependencies": {
     "morgan": "^1.10.0",
