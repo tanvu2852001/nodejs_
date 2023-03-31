@@ -1,11 +1,11 @@
-const Product = require('../models/Product')
-
+const Product = require('../models/Product');
 
 class siteController {
     home(req, res, next) {
-        Product.find({}).lean()
-        .then(products => res.render('home',{products}))
-        .catch(next)
+        Product.find({})
+            .lean()
+            .then((products) => res.render('home', { products }))
+            .catch(next);
     }
 
     search(req, res) {

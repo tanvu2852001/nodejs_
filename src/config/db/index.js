@@ -1,14 +1,11 @@
-const mongoose = require('mongoose')
-async function connect(){
-
+const mongoose = require('mongoose');
+async function connect() {
     try {
         await mongoose.connect('mongodb://localhost:27017/petshop_dev');
-        console.log('Connect successfully !!!')
+        console.log('Connect successfully !!!');
+    } catch (error) {
+        console.log('Connect failed!');
     }
-    catch (error) {
-        console.log('Connect failed!')
-    }
-
 }
 
-module.exports = {connect}
+module.exports = { connect };

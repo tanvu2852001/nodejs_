@@ -4,11 +4,15 @@
         {{#each products}}
         <div class="col-sm-6 col-lg-4" style="border border-dark">
             <div class="card-body card-product border">
-            <img class="card-img-top" src="{{this.thumbnail}}" alt="{{this.name}}">
+                <a href="/products/{{this.slug}}">
+                    <img class="card-img-top" src="{{this.thumbnail}}" alt="{{this.name}}">
+                </a>
             <div class="card-body">
-                <h5 class="card-title">{{this.name}}</h5>
+                <a href="/products/{{this.slug}}">
+                    <h5 class="card-title">{{this.name}}</h5>
+                </a>
                 <p class="card-text"></p>
-                <a href="#" class="btn btn-primary">Details</a>
+                <a href="/products/{{this.slug}}" class="btn btn-primary">Details</a>
             </div>
             </div>
         </div>
