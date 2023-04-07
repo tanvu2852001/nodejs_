@@ -1,0 +1,29 @@
+<div class="mt-4 ml-5 mr-5">
+    <h3>List Products</h3>
+
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name Products</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Created Time</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+    <tbody>
+        {{#each products}} 
+        <tr>
+            <th scope="row">{{sum @index 1}}</th>
+            <td>{{this.name}}</td>
+            <td>{{this.quantity}}</td>
+            <td>{{this.createdAt}}</td>
+            <td>
+                <a href="/products/{{this._id}}/edit" class="btn btn-link">Update</a>
+                <a href="" class="btn btn-link">Delete</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</div>
