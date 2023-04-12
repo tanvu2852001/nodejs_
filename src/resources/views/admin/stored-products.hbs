@@ -20,10 +20,43 @@
             <td>{{this.createdAt}}</td>
             <td>
                 <a href="/products/{{this._id}}/edit" class="btn btn-link">Update</a>
-                <a href="" class="btn btn-link">Delete</a>
+                <a href="/" class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#deleteModal">Delete</a>
             </td>
         </tr>
         {{/each}}
     </tbody>
 </table>
 </div>
+
+{{!Confirm}}
+
+<div id="deleteModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Notification</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>Do you really want to delete this product?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+            <button id="btn-delete-product" type="button" class="btn btn-primary">YES</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>   
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            console.log(id)
+        })
+    })
+
+</script>
