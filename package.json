@@ -30,7 +30,8 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.2.0",
     "method-override": "^3.0.0",
-    "mongoose": "^7.0.3",
+    "mongoose": "^6.10.0",
+    "mongoose-slug-generator": "^1.0.4",
     "node-sass": "^8.0.0",
     "prettier": "^2.8.7"
   },

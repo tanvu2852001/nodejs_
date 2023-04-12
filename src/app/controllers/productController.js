@@ -1,6 +1,14 @@
 const Product = require('../models/Product');
 
 class productController {
+
+    storedProducts(req, res, next) {
+        Product.find({})
+            .lean()
+            .then((products) => res.render('products/stored-products', { products }))
+            .catch(next)
+    }       
+
     productdetail(req, res, next) {
         Product.findOne({ slug: req.params.slug })
             .lean()
@@ -30,7 +38,7 @@ class productController {
 
     updateproduct(req, res, next){
         Product.updateOne({ _id: req.params.id}, req.body)
-            .then(() => res.redirect('admin/stored-products'))
+            .then(() => res.redirect('stored-products'))
             .catch(next)
     }
 
