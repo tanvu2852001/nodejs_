@@ -1,6 +1,9 @@
 const Product = require('../models/Product');
+const Category = require('../models/Category');
 
 class adController {
+
+    //Product function
     storedProduct(req, res, next) {
         Product.find({})
             .lean()
@@ -57,6 +60,26 @@ class adController {
     forceDestroyproduct(req, res, next) {
         Product.deleteOne({ _id: req.params.id })
             .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+    //Category function
+    createcategory(req, res, next){
+        res.render('ad/createcategory');
+    }
+
+    storecategory(req, res, next){
+        const category = new Category(req.body);
+        category
+            .save()
+            .then(() => res.redirect('/'))
+            .catch(next);
+    }
+
+    storedcategory(req, res, next){
+        Category.find({})
+            .lean()
+            .then((category) => res.render('ad/stored-category', { category }))
             .catch(next);
     }
 }

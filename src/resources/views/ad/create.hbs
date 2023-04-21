@@ -12,8 +12,12 @@
             </div>
             
             <div class="form-group">
-                <label for="category">Product's Category</label>
-                <input class="form-control" id="category" name="category">
+                <label for="exampleFormControlSelect1">Product's Category</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        {{#each category}}
+                        <option>{{this.name}}</option>
+                        {{/each}}
+                    </select>
             </div>
             
             <div class="form-group">

@@ -1,0 +1,37 @@
+<div class="mt-4 ml-5 mr-5">
+    <div>
+        <h3>List Categories</h3>
+        <a href="/ad/trash/category">Temporary trash can</a>
+        
+    </div>
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name Category</th>
+                <th scope="col">Created Time</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+    <tbody>
+        {{#each category}} 
+        <tr>
+            <th scope="row">{{sum @index 1}}</th>
+            <td>{{this.name}}</td>
+            <td>{{this.createdAt}}</td>
+            <td>
+                <a href="/ad/{{this._id}}/edit" class="btn btn-link">Update</a>
+                <a href="/" class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#deleteModal">Delete</a>
+            </td>
+        </tr>
+        {{else}}
+        <tr>
+            <td colspan="5" class="text-center">
+                Empty product list!
+                <a href="/ad/createcategory">Add new category</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</div>

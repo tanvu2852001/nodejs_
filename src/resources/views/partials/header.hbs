@@ -1,20 +1,41 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-    <a class="navbar-brand" href="#">Pet Shop</a>
+    <a class="navbar-brand" href="/">Pet Shop</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-            <a class="nav-link" href="/">Pet</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/ad/create">Add New Product</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/ad/stored-products">List Products</a>
-        </li>
+            <li class="nav-item mr-4">
+                <a class="nav-link" href="/">Pet</a>
+            </li>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Products
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button">
+                        <a class="" href="/ad/create">Add New Product</a>
+                    </button>
+                    <button class="dropdown-item" type="button">
+                        <a class="" href="/ad/stored-products">List Products</a>
+                    </button>
+                </div>
+            </div>
+
+            <div class="dropdown ml-4 mr-4" >
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categories
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button">
+                        <a class="" href="/ad/createcategory">Add New Category</a>
+                    </button>
+                    <button class="dropdown-item" type="button">
+                        <a class="" href="/ad/stored-category">List Category</a>
+                    </button>
+                </div>
+            </div>
     </div>
     </div>
 </nav>
