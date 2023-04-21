@@ -1,8 +1,7 @@
 <div class="mt-4 ml-5 mr-5">
     <div>
-        <h3>List Products</h3>
-        <a href="/ad/trash/products">Temporary trash can</a>
-        
+        <h3>Deleted products list</h3>
+        <a href="/ad/stored-products">Back to list products</a>
     </div>
     <table class="table mt-5">
         <thead>
@@ -10,7 +9,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Name Products</th>
                 <th scope="col">Quantity</th>
-                <th scope="col">Created Time</th>
+                <th scope="col">Deleted Time</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -20,17 +19,16 @@
             <th scope="row">{{sum @index 1}}</th>
             <td>{{this.name}}</td>
             <td>{{this.quantity}}</td>
-            <td>{{this.createdAt}}</td>
+            <td>{{this.deletedAt}}</td>
             <td>
-                <a href="/ad/{{this._id}}/edit" class="btn btn-link">Update</a>
-                <a href="/" class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#deleteModal">Delete</a>
+                <a href="" class="btn btn-link btn-restore" data-id="{{this._id}}">Restore</a>
+                <a href="/" class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#deleteModal">Permanently deleted</a>
             </td>
         </tr>
         {{else}}
         <tr>
             <td colspan="5" class="text-center">
-                Empty product list!
-                <a href="/ad/create">Add new products</a>
+                No products have been deleted yet!
             </td>
         </tr>
         {{/each}}
@@ -48,7 +46,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <p>Do you really want to delete this product?</p>
+            <p>This action cannot be undone. Do you really want to delete force this product?</p>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
@@ -60,6 +58,7 @@
 
 {{!-- Delete hidden form --}}
 <form name="delete-product-form" method="POST"></form>
+<form name="restore-product-form" method="POST"></form>
 
 <script>   
     
@@ -67,7 +66,9 @@
         
         var productId;
         var deleteForm = document.forms['delete-product-form']
+        var restoreForm = document.forms['restore-product-form']
         var btnDeleteProduct = document.getElementById('btn-delete-product')
+        var restoreBtn = $('.btn-restore')
 
         $('#deleteModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
@@ -75,9 +76,17 @@
         })
         
         btnDeleteProduct.onclick = function () {
-            deleteForm.action = '/ad/' + productId + '?_method=DELETE'
+            deleteForm.action = '/ad/' + productId + '/force?_method=DELETE'
             deleteForm.submit()
         }
+
+        restoreBtn.click(function (e) {
+            e.preventDefault();
+            
+            var productId = $(this).data('id');
+            restoreForm.action = '/ad/' + productId + '/restore?_method=PATCH'
+            restoreForm.submit()
+        })
     })
 
 </script>
