@@ -8,6 +8,12 @@ const adController = require('../app/controllers/adController');
 router.get('/createcategory', adController.createcategory);
 router.post('/storecategory', adController.storecategory);
 router.get('/stored-category', adController.storedcategory);
+router.get('/:id/editcategory', adController.editcategory);
+router.put('/:id', adController.updatecategory);
+router.delete('/:id', adController.destroycategory);
+router.patch('/:id/restorecategory', adController.restorecategory);
+router.delete('/:id/forcecategory', adController.forceDestroycategory);
+router.get('/trash/category', adController.trashcategory);
 
 //Router products
 router.get('/stored-products', adController.storedProduct);

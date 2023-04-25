@@ -1,15 +1,14 @@
 <div class="mt-4 ml-5 mr-5">
     <div>
-        <h3>List Categories</h3>
-        <a href="/ad/trash/category">Temporary trash can</a>
-        
+        <h3>Deleted category list</h3>
+        <a href="/ad/stored-category">Back to list category</a>
     </div>
     <table class="table mt-5">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name Category</th>
-                <th scope="col">Created Time</th>
+                <th scope="col">Deleted Time</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -18,17 +17,16 @@
         <tr>
             <th scope="row">{{sum @index 1}}</th>
             <td>{{this.name}}</td>
-            <td>{{this.createdAt}}</td>
+            <td>{{this.deletedAt}}</td>
             <td>
-                <a href="/ad/{{this._id}}/editcategory" class="btn btn-link">Update</a>
-                <a href="/" class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#deleteModal">Delete</a>
+                <a href="" class="btn btn-link btn-restore" data-id="{{this._id}}">Restore</a>
+                <a href="/" class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#deleteModal">Permanently deleted</a>
             </td>
         </tr>
         {{else}}
         <tr>
             <td colspan="5" class="text-center">
-                Empty category list!
-                <a href="/ad/createcategory">Add new category</a>
+                No category have been deleted yet!
             </td>
         </tr>
         {{/each}}
@@ -46,7 +44,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <p>Do you really want to delete this category?</p>
+            <p>This action cannot be undone. Do you really want to delete force this category?</p>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
@@ -58,6 +56,7 @@
 
 {{!-- Delete hidden form --}}
 <form name="delete-category-form" method="POST"></form>
+<form name="restore-category-form" method="POST"></form>
 
 <script>   
     
@@ -65,7 +64,9 @@
         
         var categoryId;
         var deleteForm = document.forms['delete-category-form']
+        var restoreForm = document.forms['restore-category-form']
         var btnDeleteCategory = document.getElementById('btn-delete-category')
+        var restoreBtn = $('.btn-restore')
 
         $('#deleteModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
@@ -73,9 +74,17 @@
         })
         
         btnDeleteCategory.onclick = function () {
-            deleteForm.action = '/ad/' + categoryId + '?_method=DELETE'
+            deleteForm.action = '/ad/' + categoryId + '/forcecategory?_method=DELETE'
             deleteForm.submit()
         }
+
+        restoreBtn.click(function (e) {
+            e.preventDefault();
+            
+            var categoryId = $(this).data('id');
+            restoreForm.action = '/ad/' + categoryId + '/restorecategory?_method=PATCH'
+            restoreForm.submit()
+        })
     })
 
 </script>

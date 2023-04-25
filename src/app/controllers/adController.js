@@ -12,7 +12,10 @@ class adController {
     }
 
     createproduct(req, res, next) {
-        res.render('ad/create');
+        Category.find({})
+            .lean()
+            .then((category) => res.render('ad/create', { category }))
+            .catch(next);
     }
 
     storeproduct(req, res, next) {
@@ -80,6 +83,46 @@ class adController {
         Category.find({})
             .lean()
             .then((category) => res.render('ad/stored-category', { category }))
+            .catch(next);
+    }
+
+    editcategory(req, res, next){
+        Category.findById(req.params.id)
+            .lean()
+            .then((category) => {
+                res.render('ad/editcategory', { category });
+            })
+            .catch(next);
+    }
+
+    updatecategory(req, res, next) {
+        Category.updateOne({ _id: req.params.id }, req.body)
+            .then(() => res.redirect('/ad/stored-category'))
+            .catch(next);
+    }
+
+    destroycategory(req, res, next) {
+        Category.delete({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+    trashcategory(req, res, next) {
+        Category.findDeleted({})
+            .lean()
+            .then((category) => res.render('ad/trash-category', { category }))
+            .catch(next);
+    }
+
+    restorecategory(req, res, next) {
+        Category.restore({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+    forceDestroycategory(req, res, next) {
+        Category.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
             .catch(next);
     }
 }
