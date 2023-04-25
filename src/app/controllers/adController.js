@@ -2,7 +2,6 @@ const Product = require('../models/Product');
 const Category = require('../models/Category');
 
 class adController {
-
     //Product function
     storedProduct(req, res, next) {
         Product.find({})
@@ -67,11 +66,11 @@ class adController {
     }
 
     //Category function
-    createcategory(req, res, next){
+    createcategory(req, res, next) {
         res.render('ad/createcategory');
     }
 
-    storecategory(req, res, next){
+    storecategory(req, res, next) {
         const category = new Category(req.body);
         category
             .save()
@@ -79,14 +78,14 @@ class adController {
             .catch(next);
     }
 
-    storedcategory(req, res, next){
+    storedcategory(req, res, next) {
         Category.find({})
             .lean()
             .then((category) => res.render('ad/stored-category', { category }))
             .catch(next);
     }
 
-    editcategory(req, res, next){
+    editcategory(req, res, next) {
         Category.findById(req.params.id)
             .lean()
             .then((category) => {

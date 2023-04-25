@@ -3,7 +3,6 @@ const router = express.Router();
 
 const adController = require('../app/controllers/adController');
 
-
 //Router category
 router.get('/createcategory', adController.createcategory);
 router.post('/storecategory', adController.storecategory);
