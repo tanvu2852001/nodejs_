@@ -7,10 +7,6 @@ class siteController {
             .then((products) => res.render('home', { products }))
             .catch(next);
     }
-
-    search(req, res) {
-        res.render('search');
-    }
 }
 
 module.exports = new siteController();
